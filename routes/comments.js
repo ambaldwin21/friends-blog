@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 const knex = require('../knex');
 
-/* GET users listing. */
+/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('users', { title: 'this is the users page/route' });
+  res.render('comments', { title: 'this is the comments page/route' });
 });
 
 module.exports = router;
