@@ -8,13 +8,51 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cookieSession = require('cookie-session');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
 var comments = require('./routes/comments');
+var db = require('./db/api')
 
 var app = express();
+app.use(passport.initialize());
+
+passport.use(new FacebookStrategy({
+  clientID: '1296493123736207',
+  clientSecret: '54a5c28e3b0fd0cd37d19c04c6c542a6',
+  callbackURL: "http://localhost:3000/auth/facebook/callback",
+  profileFields: ['id', 'name', 'profileUrl', 'email'],
+  enableProof: true,
+  passReqToCallback: true
+},
+
+  function(req, accessToken, refreshToken, profile, cb1) {
+    db.createOrLogin(profile, (err, user) => {
+      req.session.userInfo = user;
+      return cb1(null, user);
+    })
+  }
+))
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
+
+app.use(cookieSession({
+    name: "ski_blog",
+    secret: process.env.SESSION_SECRET,
+    secureProxy: app.get('env') === 'production'
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

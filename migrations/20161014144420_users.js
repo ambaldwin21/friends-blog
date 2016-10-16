@@ -8,7 +8,6 @@ exports.up = function(knex) {
       .notNullable()
       .unique();
     table.specificType('hash', 'character(60)')
-      .notNullable();
     table.timestamps(true, true);
   });
 };
