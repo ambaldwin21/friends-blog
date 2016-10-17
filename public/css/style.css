@@ -16,3 +16,8 @@ body {
   main {
     flex: 1 0 auto;
   }
+
+  .user-image {
+  width: 200px;
+  height: 200px;
+}

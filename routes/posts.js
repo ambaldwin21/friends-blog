@@ -6,7 +6,6 @@ const knex = require('../knex');
 router.get('/', (req, res, next) => {
   knex('posts').then((posts) => {
     res.send(posts);
-    // console.log(users);
   })
 });
 
