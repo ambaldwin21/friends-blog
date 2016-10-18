@@ -6,9 +6,12 @@ const knex = require('../knex');
 router.get('/', (req, res, next) => {
   knex('users').then((users) => {
     res.render('users', {users: users});
-    // console.log(users);
   })
 });
+
+router.get('/new', (req, res, next) => {
+  res.render('new-user');
+})
 
 router.get('/:id', (req, res, next) => {
   knex('users').where('users.id', req.params.id).first()
@@ -16,10 +19,6 @@ router.get('/:id', (req, res, next) => {
     res.render('user', {user: user});
   })
 });
-
-router.get('/new', (req, res) => {
-  res.render('new-user')
-})
 
 router.post('/', (req, res, next) => {
   let newUser = {
@@ -33,5 +32,28 @@ router.post('/', (req, res, next) => {
     res.redirect('/users')
   })
 });
+
+router.put('/:id', (req, res) => {
+    return knex('users')
+    .where('users.id', req.body.id)
+    .update(req.body).then(() => {
+    res.redirect('/users')
+  })
+})
+
+router.delete('/:id', (req, res) => {
+  knex('users')
+  .where('users.id', req.params.id).del()
+  .then(() => {
+    res.json({'response': 'user deleted'})
+  })
+})
+
+router.get('/:id/edit', (req, res) => {
+  knex('users').where('users.id', req.params.id).first()
+  .then((user) => {
+    res.render('edit-user', {user: user});
+  })
+})
 
 module.exports = router;

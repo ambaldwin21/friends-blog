@@ -1,0 +1,26 @@
+<script src="/js/app.js" type="text/javascript"></script>
+
+<div class="container">
+  <h2>Editing: <span class="name-title">{{user.first_name}} {{user.last_name}}</span></h2>
+  <form name="edit-user-form">
+    <div class="row">
+      <div class="input-field col-sm-12">
+        <label for="first_name">First Name</label>
+        <input class="input-field col-sm-12" id="first_name" type="text" value="{{user.first_name}}">
+      </div>
+      <div class="input-field col-sm-12">
+        <label for="last_name">Last Name</label>
+        <input class="input-field col-sm-12" id="last_name" type="text" value="{{user.last_name}}">
+      </div>
+      <div class="input-field col-sm-12">
+        <label for="image">Link to Picture</label>
+        <input id="image" type="text" value="{{user.image}}">
+      </div>
+      <div class="input-field col-sm-12">
+        <label for="email">Email Address</label>
+        <textarea id="email" class="materialize-textarea">{{user.email}}</textarea>
+      </div>
+      <button type="submit" id="edit-user-btn" value="{{user.id}}" class="waves-effect waves-light btn-large">Submit</button>
+    </div>
+  </form>
+</div>

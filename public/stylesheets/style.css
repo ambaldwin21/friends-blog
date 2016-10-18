@@ -13,9 +13,9 @@ body {
     flex-direction: column;
   }
 
-  main {
+  /*main {
     flex: 1 0 auto;
-  }
+  }*/
 
   .user-image {
   width: 200px;
