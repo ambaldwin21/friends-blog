@@ -1,0 +1,14 @@
+<div class="container container-custom">
+  <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large blue">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red darken-1" data-postid="{{post.postId}}" id="delete-post-btn"><i class="material-icons">delete</i></a></li>
+      <li><a href="/posts/{{post.postId}}/edit" class="btn-floating yellow darken-1"><i class="material-icons">mode_edit</i></a></li>
+    </ul>
+  </div>
+  <h3>{{post.title}}</h3>
+  <p>By {{post.firstName}} {{post.lastName}}</p>
+  <p>{{post.postBody}}</p>
+</div>

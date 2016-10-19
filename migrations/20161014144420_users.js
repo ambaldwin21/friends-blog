@@ -4,7 +4,7 @@ exports.up = function(knex) {
     table.string('first_name')
     table.string('last_name')
     table.string('image')
-    table.string('email', 255)
+    table.string('email')
       .notNullable()
       .unique();
     table.specificType('hash', 'character(60)')

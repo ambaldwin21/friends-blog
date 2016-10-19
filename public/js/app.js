@@ -3,6 +3,8 @@
 $(document).ready(() => {
   editUserListener()
   deleteUserListener()
+  editPostListener()
+  deletePostListener()
 })
 
 function editUserListener(){
@@ -32,15 +34,53 @@ function editUserListener(){
 function deleteUserListener(){
   $('#delete-user-btn').click((e) => {
     e.preventDefault()
-    console.log('delete was clicked!');
+    // console.log('delete was clicked!');
     let id = $('#delete-user-btn').data("userid")
-    console.log("id:", id);
     $.ajax({
       contentType: 'application/json',
       url: `/users/${id}`,
       method: 'DELETE',
     }).done(() => {
       window.location = '/users'
+    }).fail(err => {
+      console.log(err)
+    })
+  })
+}
+
+function editPostListener(){
+  $('#edit-post-btn').click((e) => {
+    e.preventDefault()
+    console.log('clicked');
+    const id = $(e.target).val()
+    console.log('id:', id);
+    const title = $('#title').val().trim()
+    const body = $('#body').val().trim()
+    $.ajax({
+      contentType: 'application/json',
+      url: `/posts/${id}`,
+      method: 'PUT',
+      dataType: 'json',
+      data: JSON.stringify({id, title, body}),
+    }).done(() => {
+      window.location = '/posts'
+    }).fail(err => {
+      window.location = '/posts'
+    })
+  })
+}
+
+function deletePostListener(){
+  $('#delete-post-btn').click((e) => {
+    e.preventDefault()
+    console.log('delete was clicked!');
+    let id = $('#delete-post-btn').data("postid")
+    $.ajax({
+      contentType: 'application/json',
+      url: `/posts/${id}`,
+      method: 'DELETE',
+    }).done(() => {
+      window.location = '/posts'
     }).fail(err => {
       console.log(err)
     })
