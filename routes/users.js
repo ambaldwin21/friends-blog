@@ -9,16 +9,17 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/new', (req, res, next) => {
-  res.render('new-user');
-})
-
 router.get('/:id', (req, res, next) => {
   knex('users').where('users.id', req.params.id).first()
   .then((user) => {
     res.render('user', {user: user});
   })
 });
+
+router.get('/new', (req, res, next) => {
+  res.render('new-user');
+})
+
 
 router.post('/', (req, res, next) => {
   let newUser = {

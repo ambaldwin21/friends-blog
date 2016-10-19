@@ -32,8 +32,9 @@ function editUserListener(){
 function deleteUserListener(){
   $('#delete-user-btn').click((e) => {
     e.preventDefault()
-    // const id = $(e.target).val()
-    // console.log("id:", id);
+    console.log('delete was clicked!');
+    let id = $('#delete-user-btn').data("userid")
+    console.log("id:", id);
     $.ajax({
       contentType: 'application/json',
       url: `/users/${id}`,
