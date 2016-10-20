@@ -6,7 +6,6 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 const bcrypt = require('bcrypt');
 
-
 router.get('/', (req, res, next) => {
     res.render('index')
 });

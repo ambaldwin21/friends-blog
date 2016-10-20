@@ -13,7 +13,6 @@ router.post('/', (req, res, next) => {
     knex('users')
         .where('email', req.body.email)
         .then((user) => {
-            console.log('user:', user);
             if (user.length === 0) {
                 const hashed_password = bcrypt.hashSync(req.body.password, 12)
                 const newUser = {
@@ -27,7 +26,6 @@ router.post('/', (req, res, next) => {
                 knex('users')
                     .insert(newUser, '*')
                     .then((users) => {
-                      console.log(users);
                         const id = users[0].id
                         knex('users')
                             .where('id', id)
