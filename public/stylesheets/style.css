@@ -2,13 +2,31 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-  }
+}
+.user-image {
+    width: 200px;
+    height: 200px;
+}
+.parallax-container {
+    height: 630px;
+}
 
-  /*main {
-    flex: 1 0 auto;
-  }*/
+.nav-wrapper {
+  background-color: #000080;
+}
 
-  .user-image {
-  width: 200px;
-  height: 200px;
+.post-container {
+  text-align: center;
+}
+
+.users-container {
+  text-align: center;
+}
+
+h4 {
+  text-color: #000080;
+}
+
+nav .brand-logo {
+  padding-left: 20px;
 }

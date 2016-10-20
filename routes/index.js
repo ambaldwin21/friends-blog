@@ -39,11 +39,6 @@ router.get('/auth/facebook/callback',
     successRedirect: '/posts',
     failureRedirect: '/posts'
   }));
-//
-// router.delete('/', (req, res, next) => {
-//   req.session = null;
-//   res.send('nulled')
-// });
 
 router.get('/logout', ((req, res, next) => {
     req.session = null;

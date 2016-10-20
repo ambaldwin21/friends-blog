@@ -1,11 +1,18 @@
 <nav>
     <div class="nav-wrapper">
-        <a href="/posts" class="brand-logo">Skier's Blog</a>
+        <a href="/posts" class="brand-logo">Friends Blog</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/logout">Log out!</a></li>
+            <li><a href="/users">Contributors</a></li>
+            <li><a href="/posts/new">Write!</a></li>
+            <li><a href="/posts">Posts</a></li>
         </ul>
     </div>
 </nav>
+
+<div class="parallax-container">
+    <div><img src="/images/friends.jpg"></div>
+</div>
 
 <div class="container container-custom">
   <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
@@ -17,7 +24,11 @@
       <li><a href="/posts/{{post.postId}}/edit" class="btn-floating yellow darken-1"><i class="material-icons">mode_edit</i></a></li>
     </ul>
   </div>
+  <div class="card center-align">
+    <div class="card-content black-text">
   <h3>{{post.title}}</h3>
-  <p>By {{post.firstName}} {{post.lastName}}</p>
+  <p>By: {{post.firstName}} {{post.lastName}}</p>
   <p>{{post.postBody}}</p>
+</div>
+</div>
 </div>
