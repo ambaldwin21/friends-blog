@@ -1,5 +1,31 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
-<button type="button" href="/auth/facebook" name="button">Facebook Register</button>
-<a href="/auth/facebook">Facebook Register</a>
+<nav>
+   <div class="nav-wrapper">
+     <a href="/posts" class="brand-logo">Skier's Blog</a>
+     <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a href="/signup">Sign-up!</a></li>
+     </ul>
+   </div>
+ </nav>
+<div class="container">
+    <form method="POST" id="loginForm" class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" name="email">
+                <label for="email">Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" type="password" name="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col s12">
+                <button class="btn waves-effect orange waves-light" type="submit" name="login">Log In</button>
+                <a href="/auth/facebook">Facebook Register</a>
+            </div>
+        </div>
+    </form>
+</div>
