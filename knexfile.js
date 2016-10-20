@@ -1,9 +1,11 @@
 'use strict';
 
+require('dotenv').config();
+
 module.exports = {
   development: {
     client: 'pg',
-    connection: process.env.DATABASE_URL
+    connection: 'postgres://localhost/ski_blog'
   },
   production: {
     client: 'pg',
