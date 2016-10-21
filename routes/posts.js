@@ -2,8 +2,17 @@ var express = require('express');
 var router = express.Router();
 const knex = require('../knex');
 
+const authorize = (req, res, next) => {
+    if (!req.session.userInfo) {
+        res.render('error', {
+            message: "You need to be signed in to access the posts page."
+        });
+    }
+    next();
+}
+
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', authorize, (req, res, next) => {
   knex('posts')
   .join('users', 'posts.user_id', 'users.id')
   .select('posts.id as postId', 'users.id as userId', 'users.first_name as firstName', 'users.last_name as lastName', 'posts.title as title', 'posts.body as postBody')
@@ -12,11 +21,11 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/new', (req, res, next) => {
+router.get('/new', authorize, (req, res, next) => {
   res.render('new-post');
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', authorize, (req, res, next) => {
   knex('posts')
   .join('users', 'posts.user_id', 'users.id')
   .select('posts.id as postId', 'users.id as userId', 'users.first_name as firstName', 'users.last_name as lastName', 'posts.title as title', 'posts.body as postBody')
@@ -62,7 +71,7 @@ router.delete('/:id', (req, res) => {
   })
 })
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', authorize, (req, res) => {
   knex('posts')
   .join('users', 'posts.user_id', 'users.id')
   .select('posts.id as postId', 'users.id as userId', 'users.first_name as firstName', 'users.last_name as lastName', 'posts.title as title', 'posts.body as postBody')

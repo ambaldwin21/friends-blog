@@ -2,18 +2,27 @@ var express = require('express');
 var router = express.Router();
 const knex = require('../knex');
 
+const authorize = (req, res, next) => {
+    if (!req.session.userInfo) {
+        res.render('error', {
+            message: "You need to be signed in to access the users page."
+        });
+    }
+    next();
+}
+
 /* GET users listing. */
-router.get('/', (req, res, next) => {
+router.get('/', authorize, (req, res, next) => {
   knex('users').then((users) => {
     res.render('users', {users: users});
   })
 });
 
-router.get('/new', (req, res, next) => {
+router.get('/new', authorize, (req, res, next) => {
   res.render('new-user');
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', authorize, (req, res, next) => {
   knex('users').where('users.id', req.params.id).first()
   .then((user) => {
     res.render('user', {user: user});
@@ -49,7 +58,7 @@ router.delete('/:id', (req, res) => {
   })
 })
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', authorize, (req, res) => {
   knex('users').where('users.id', req.params.id).first()
   .then((user) => {
     res.render('edit-user', {user: user});
