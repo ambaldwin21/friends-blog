@@ -35,10 +35,14 @@ router.post('/', (req, res, next) => {
     body: req.body.body
   }
   // console.log(newPost);
-  knex('posts').insert(newPost,'*')
-    .then(() => {
-    res.redirect('/posts')
-  })
+  if (newPost.title === "" || newPost.body === "") {
+        res.send('Please enter a title and some text!')
+    } else {
+      knex('posts').insert(newPost,'*')
+        .then(() => {
+        res.redirect('/posts')
+      })
+    }
 });
 
 router.put('/:id', (req, res) => {
