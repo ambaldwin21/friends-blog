@@ -103,4 +103,9 @@ app.use(function(err, req, res, next) {
 });
 
 
+app.listen(process.env.PORT || '3000');
+// server.on('error', onError);
+// server.on('listening', onListening);
+
+
 module.exports = app;
