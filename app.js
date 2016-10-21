@@ -24,7 +24,7 @@ app.use(passport.initialize());
 passport.use(new FacebookStrategy({
   clientID: '1296493123736207',
   clientSecret: '54a5c28e3b0fd0cd37d19c04c6c542a6',
-  callbackURL: "https://friends-blog.herokuapp.com/",
+  callbackURL: "https://friends-blog.herokuapp.com/auth/facebook/callback",
   profileFields: ['id', 'name', 'profileUrl', 'email'],
   enableProof: true,
   passReqToCallback: true
